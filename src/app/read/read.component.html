@@ -1,0 +1,33 @@
+<p>
+  read works!
+</p>
+<input id="preview" type="file" (change)="selectFile($event.target.files)" />
+
+<input type="number" [(ngModel)]="filterValue"  (change)="filter(filterValue)">
+
+
+
+<table class="csv-table">
+  <tbody>
+    <tr  *ngFor="let a of rowData |slice:0:1">
+      <span  *ngFor="let b of a">
+      <th  class="headerData">
+        {{b}}
+      </th>
+    </span>
+    </tr>
+  </tbody>
+
+  <tr *ngFor="let a of rowData|slice:1; let i=index">
+    <span *ngFor="let b of a; "> 
+        <td class="headerData">{{b}}</td>
+    </span>
+   
+  </tr>
+
+<!-- <tbody>
+  <tr *ngFor="let a of headerColumn|slice:1">
+    <td>{{a}}</td>
+  </tr>
+</tbody> -->
+</table>
