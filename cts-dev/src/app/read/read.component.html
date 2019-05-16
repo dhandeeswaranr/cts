@@ -1,0 +1,46 @@
+<div class="container">
+
+  <div class="header-title">
+    <h5>CSV File Data</h5>
+  </div>
+  <div class="form-group">
+    <input class="btn btn-primary" type="file" (change)="selectFile($event.target.files)"  accept=".csv">
+  </div>
+  <div class="form-group filter" *ngIf="filterBox">
+      <label>Search:</label>
+      <input type="text" class="form-control" [(ngModel)]="filterValue" placeholder="Enter issue counter"  (keyup)="filter(filterValue)">
+  </div>
+  <table class="csv-table table" *ngIf="filterBox">
+    <thead>
+        <tr>
+          <span>
+            <th  class="headerData">
+            First name
+            </th>
+            <th  class="headerData">
+                Sur name
+            </th>
+            <th  class="headerData">
+                Issue count
+            </th>
+            <th  class="headerData">
+                Date of birth
+            </th>
+        </span>
+        </tr>
+      </thead>
+    <tbody>
+        <tr *ngFor="let levelOneData of fileInnerData">
+                <span *ngFor="let levelTwoData of levelOneData"> 
+                    <td class="headerData">{{levelTwoData | removejunk}} </td>
+            </span>
+        </tr>         
+    </tbody>
+  </table>
+  <div *ngIf="noData" class="not-found">
+        No Record Found Please Enter valid Issue count
+  </div>
+  <div *ngIf="!filterBox">
+    Please upload .CSV file
+  </div>
+ </div>
